@@ -15,9 +15,17 @@ function toggleTweet({ id, authedUser, hasLiked }) {
     type: TOGGLE_TWEET,
     id,
     authedUser,
-    hasLiked
+    hasLiked,
   };
 }
 
-
-
+export function handleToggleTweet(info) {
+  return (dispatch) => {
+    dispatch(toggleTweet(info));
+    return saveLikeToggle(info).catch((e) => {
+      console.warm("Error in handleToggleTweet: ", e);
+      dispatch(toggleTweet(info));
+      alert("Their was an error liking the tweet. Try again.");
+    });
+  };
+}
