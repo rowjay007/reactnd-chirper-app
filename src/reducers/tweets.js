@@ -19,7 +19,25 @@ export default function tweets(state = [], action) {
                 )
               : state[action.id].likes.concat([action.authedUser]),
         },
-      };
+      }
+    case ADD_TWEET :
+      const { tweet } = action
+
+      let replyingTo = {}
+      if (tweet.replyingTo !== null) {
+        replyingTo = {
+          [tweet.replyingTo]: {
+            ...state[tweet.replyingTo],
+            replies: state[tweet.replyTo].replies.concat([tweet.id])
+             }
+        }
+      }
+      ...replyingTo,
+      }
+
+      return {
+        ...state,
+        [action.tweet.id]: action.tweet,
     default:
       return state;
   }
