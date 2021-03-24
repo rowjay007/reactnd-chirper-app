@@ -16,10 +16,10 @@ class NewTweet extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-      const { text } = this.state;
-      const {dispatch, id} = this.props
+    const { text } = this.state;
+    const { dispatch, id } = this.props;
 
-    dispatch(handleAddTweet(text., id))
+    dispatch(handleAddTweet(text.id));
 
     this.setState(() => ({
       text: "",
@@ -55,4 +55,4 @@ class NewTweet extends Component {
   }
 }
 
-export default connect()( NewTweet);
+export default connect()(NewTweet);
